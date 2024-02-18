@@ -1,11 +1,12 @@
 open Feliz
 
 type Props = {
-    items: string []
-    heading: string
+    Items: string []
+    Heading: string
+    ItemSelected : string -> unit
 }
 [<ReactComponent>]
-let ListGroup((items, heading): Props) =
+let ListGroup ({Items = items; Heading = heading; ItemSelected = itemSelected} : Props) =
     let message = if items.Length = 0 then Html.p "No item found" else Html.p ""
     // let mutable selectedIndex = 0
     let (selectedIndex, setSelectedIndex) = React.useState(0)
@@ -27,8 +28,9 @@ let ListGroup((items, heading): Props) =
                                                 prop.className (listGroupItemClases index)
                                                 prop.text item
                                                 prop.onClick (fun _ -> 
-                                                                        printfn($"{item}")
-                                                                        setSelectedIndex(index))
+                                                                        setSelectedIndex(index)
+                                                                        itemSelected(item)
+                                                                        )
                                             ]))
         ] // end of ul
     ]// end of div
