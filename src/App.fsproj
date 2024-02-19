@@ -4,6 +4,7 @@
     </PropertyGroup>
     <ItemGroup>
         <None Include="index.html" />
+        <Compile Include="Components/Alert.fs" />
         <Compile Include="Components/ListGroup.fs" />
         <Compile Include="Extensions.fs" />
         
